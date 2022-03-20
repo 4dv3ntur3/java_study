@@ -1,0 +1,1 @@
+package inherit_test;

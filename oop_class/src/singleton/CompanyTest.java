@@ -17,9 +17,10 @@ public class CompanyTest {
 		Company c1 = Company.getInstance();
 		Company c2 = Company.getInstance();
 		
-		Company c3 = new Company(); //error
-		System.out.println(c1==c2); // True로 출력되도록 프로그래밍해라 -> singleton
-		
+//		
+//		Company c3 = new Company(); //error
+//		System.out.println(c1==c2); // True로 출력되도록 프로그래밍해라 -> singleton
+//		
 		// 동일한 값
 		System.out.println(c1); // singleton.Company@32d2fa64
 		System.out.println(c2); // singleton.Company@32d2fa64

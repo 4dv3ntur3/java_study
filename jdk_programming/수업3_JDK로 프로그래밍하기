@@ -1,0 +1,106 @@
+# 기본 클래스
+
+
+1. java.lang 패키지
+import 자동으로 됨
+import java.lang.*; 가 추가됨
+많이 사용하는 기본 클래스들이 속한 패키지
+String, Integer, System
+
+****정의 피킹이 안 될 경우
+버튼만 보이고 바이너리로 보이는 사람들은 -> 버튼 눌러서
+src.zip 파일 연결 설정하기
+
+
+-위치
+java - jdk - lib - src.zip 압축풀어서 보기
+-> java.base 모듈 밑 java > lang 밑 여러 class
+
+
+	Object Class
+	모든 클래스의 최상위 클래스
+	java.lang.Object class
+	extends Object를 하지는 않음 (컴파일러가 자동으로 extends Object 추가해 줌)
+	모든 클래스는 Object 클래스에서 상속받음 -> Object 클래스 메서드 사용 가능
+	final 제외하고 일부 재정의 가능
+		ex) wait(), notify() ...
+		이런 것들은 재정의 불가 
+	Object type으로 형변환 가능 
+	
+	-toString
+	-equals : 두 인스턴스의 주소 값을 비교하여 true/false 반환
+		두 인스턴스가 같으려면 물리적으로 같은 메모리여야 함 
+		같은 학번의 학생인 경우 여러 인스턴스의 주소 값은 다른데 같은 학생으로 처리해야 
+		학점이나 정보 산출에 문제가 생기지 않음 -> equals() 재정의
+		
+	-hashCode(): 특히 검색을 위한 방
+		hash: 정보를 저장, 검색하기 위해 사용하는 자료구조
+		
+		hash table에 매핑
+		0번부터 9번까지의 방
+		제일 간단한 방
+		key만 알면 저장된 방을 금방 찾을 수 있음 
+		hash function으로 %(modulo)를 썼으니까
+		hash function은 어떤 자료구조냐에 따라 (어떤 정보인가에 따라) 여러 가지를 쓸 수가 있음
+		이 함수 잘 만드는 것도 중요함 
+		내 값이 5다 -> 5%10 -> 5번 방에 들어가라 이런 식으로
+		20이다 -> 20%10 -> 0 -> 0번 방에 들어가라
+		index = h(key) 
+		-constant time? 
+		반환값: 객체 인스턴스가 저장된 힙 메모리 주소값 반환
+		메모리 관리: jvm이 관리함 -> hash로 관리함
+		
+	-clone()
+		객체의 원본 복제
+		원본 유지해 놓고 여러 복사본 사용할 때
+		객체의 정보가 같은 인스턴스가 또 생성 -> 정보은닉, 객체보호 관점에서 위배
+
+
+String class
+-문자열: 문자가 여러 개 연결되어 있음. 연속된 정보. -> String class
+C언어: char array를 써야 했음... 문자열 끝 찾고...
+-문자: 2바이트의 한 문자.
+-String을 선언하는 두 가지 방법
+
+String str1 = new String("abc"); -> 힙메모리에 생성
+String str2= "test"; -> 문자열 상수. 어딘가에 있는 test의 주소를 가리키게 됨. 상수 pool. 리터럴.
+
+한번 생성된 String 값(문자열)은 불변 (immutable)
+문자열을 연결하게 되면 새 문자열을 만들고 그 주소를 가리키게 됨
+즉, 문자열 연결을 계속하면 메모리에 garbage가 많이 생길 수 있음 
+
+-> StringBuilder(동기화 지원x), StringBuffer(동기화 지원o) 사용
+내부적으로 가변적인 char[] 배열 가지고 있음 (String은 final byte[] 였음)
+매번 새로 생성하지 않고 기존 배열을 변경하므로 garbage x
+멀티스레드 프로그래밍에서 스레드간 순서를 보장해 주는 게 동기화 -> 리소스에 lock을 건다 
+두 개 이상 스레드가 동시에 메모리에 access할 때 sync를 맞춰 주는 것 
+단일 스레드에서는 builder 사용 권장 
+
+Wrapper Class
+-기본 자료형에 대한 class
+
+autoboxing , unboxing
+java 5 이전과 이후
+예전: Integer 객체, int는 4바이트 기본 자료형. 연산 불가였음. 
+이제는 된다 
+
+
+Class 클래스
+-자바의 모든 클래스와 인터페이스는 컴파일 후 class 파일로 생성
+-class 파일에는 객체의 정보(멤버변수, 메서드, 생성자 등)이 포함됨
+-class 클래스는 컴파일된 class 파일에서 객체의 정보를 불러올 수 있음
+
+만약 내가 만든 이 서비스가 3개의 DB를 support
+그러나 이 세 개 라이브러리를 전부 다 엮어서 컴파일하지는 않음
+뭘 쓸지는 모르지만 다 묶어서 컴파일하는 건 오버헤드
+-> 실제로 어디 property에서 읽어와서 해당되는 것만 로딩  
+
+
+
+
+
+
+
+
+
+	
