@@ -1,0 +1,26 @@
+package io_stream.writer;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileWriterTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// true 옵션 주면 이어서 써짐
+		try(FileWriter fw = new FileWriter("writer.txt")) {
+			fw.write("A");
+			char[] cbuf = {'B', 'C', 'D'};
+			fw.write(cbuf);
+			fw.write("안녕하세요");
+			fw.write(cbuf, 1, 2);
+			fw.write("123");
+			
+		} catch (IOException e) {
+			System.out.println(e);
+			
+		}
+
+	}
+
+}
